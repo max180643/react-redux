@@ -1,11 +1,15 @@
 import React from 'react'
+import { useDispatch } from "react-redux"
 
-export default function Item({product}) {
+import {addToCart} from "../actions/cartActions"
+
+export default function Item({ product }) {
+  const dispatch = useDispatch()
   return (
     <div className='product' >
         <h4>{product.title}</h4>
         <p>{product.price}</p>
-        <button> Add To Cart</button>
+        <button onClick={() => dispatch(addToCart({...product, quantity: 1}))}> Add To Cart</button>
       </div>
   )
 }
